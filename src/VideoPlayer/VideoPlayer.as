@@ -1,5 +1,6 @@
 package
 {
+	import flash.display.BitmapData;
 	import flash.display.DisplayObject;
 	import flash.display.Shape;
 	import flash.display.Sprite;
@@ -7,6 +8,8 @@ package
 	import flash.events.MouseEvent;
 	import flash.events.NetStatusEvent;
 	import flash.events.TimerEvent;
+	import flash.geom.Matrix;
+	import flash.geom.Rectangle;
 	import flash.media.SoundTransform;
 	import flash.media.Video;
 	import flash.net.NetConnection;
@@ -75,7 +78,7 @@ package
 			addChild(thisMask);
 			
 			//background
-			background = getShape(w, h, 0x010101, 0.6);
+			background = getShape(w, h, 0x000000, 1);
 			addChild(background);
 			
 			//video
@@ -468,6 +471,10 @@ package
 		
 		public function seek(time:Number):void
 		{
+			if (totalTime > 0 && time >= totalTime)
+			{
+				return;
+			}
 			if (netStream)
 			{
 				_playing = true;
@@ -497,6 +504,36 @@ package
 			setWidthHeight(w, h);
 			
 			refresh();
+		}
+		
+		public function getSnapshot(flag:Boolean = true):BitmapData
+		{
+			var snapshotBd:BitmapData;
+			if (flag)
+			{
+				try
+				{
+					snapshotBd = new BitmapData(background.width, background.height, true, 0x000000);
+					snapshotBd.draw(this, null, null, null, null, true);
+				}
+				catch (error:Error)
+				{
+					snapshotBd = null;
+				}
+			}
+			else
+			{
+				try
+				{
+					snapshotBd = new BitmapData(video.width, video.height, true, 0x000000);
+					snapshotBd.draw(this, new Matrix(1, 0, 0, 1, -video.x, -video.y), null, null, null, true);
+				}
+				catch (error:Error)
+				{
+					snapshotBd = null;
+				}
+			}
+			return snapshotBd;
 		}
 		
 		public function get loadSize():Number
