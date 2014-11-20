@@ -475,6 +475,8 @@ package
 			{
 				return;
 			}
+			if (time < 0)
+				time = 0;
 			if (netStream)
 			{
 				_playing = true;
