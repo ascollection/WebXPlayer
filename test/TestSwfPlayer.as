@@ -1,14 +1,10 @@
-package  
+package
 {
 	import flash.display.Bitmap;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	
-	/**
-	 * ...
-	 * @author kshen
-	 */
-	public class TestSwfPlayer extends Sprite 
+	public class TestSwfPlayer extends Sprite
 	{
 		
 		private var swfPlayer:SwfPlayer;
@@ -96,7 +92,7 @@ package
 					break;
 			}
 		}
-		
+	
 	}
 
 }

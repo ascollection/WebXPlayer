@@ -21,15 +21,6 @@ package
 	
 	/**
 	 * support swf/jpg/png
-	 * SWF广告类
-	 *
-	 * 加载域的问题
-	 * 1、对于AS3素材，加载域为LoaderContext(true),  并取loader.content,
-	 * 2、对于某些AS2素材时，加载域为LoaderContext(true),   只能取loader对象，操作loader.content会报错http://static.atm.youku.com/08032103/TV-overlay-480x60-25K.swf    http://static.atm.youku.com/Tudou2012/11/1106/20536/360x27020121106.swf
-	 * 3、图片的加载域为LoaderContext(true),		http://static.atm.youku.com/Tudou2012/11/1107/19031/YIF360X270.jpg
-	 *
-	 * 因此在取对象时应做try catch处理
-	 * @author kshen
 	 */
 	public class SwfPlayer extends Sprite
 	{
