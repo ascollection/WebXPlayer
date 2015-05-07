@@ -456,6 +456,8 @@ package
 			}
 			else
 			{
+				if (playTimer && !playTimer.running)
+					playTimer.start();
 				_playing = true;
 				netStream.resume();
 			}
@@ -479,6 +481,8 @@ package
 				time = 0;
 			if (netStream)
 			{
+				if (playTimer && !playTimer.running)
+					playTimer.start();
 				_playing = true;
 				_play_end = false;
 				netStream.seek(time);
